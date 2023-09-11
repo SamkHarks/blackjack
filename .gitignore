@@ -1,0 +1,5 @@
+# Exclude build artifacts
+/build/
+
+# Exclude IDE-specific files and directories
+.vscode/
