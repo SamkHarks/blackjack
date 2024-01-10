@@ -2,6 +2,14 @@
 #include "blackjackgame.hpp"
 #include "card.hpp"
 
+Player BlackJackGame::getPlayer() const {
+    return player_;
+}
+
+Player BlackJackGame::getDealer() const {
+    return dealer_;
+}
+
 Card BlackJackGame::draw(Player & player) {
     if (!deck_.empty()) {
         Card card = deck_.back();

@@ -20,6 +20,8 @@ public:
     void hit(Player & player);
     void stand();
     Card draw(Player & player);
+    Player getPlayer() const;
+    Player getDealer() const;
     void printCards();
 private:
     Player player_;
