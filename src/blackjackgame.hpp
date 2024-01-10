@@ -1,3 +1,6 @@
+#ifndef BLACKJACKGAME_HPP
+#define BLACKJACKGAME_HPP
+
 #include "player.hpp"
 #include <vector>
 #include <algorithm>
@@ -47,3 +50,5 @@ private:
         dealer_.printHand();
     }
 };
+
+#endif
