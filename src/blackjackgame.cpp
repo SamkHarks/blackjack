@@ -10,14 +10,24 @@ Player BlackJackGame::getDealer() const {
     return dealer_;
 }
 
+Card BlackJackGame::getDealtCard() const {
+    return dealtCard_;
+}
+
+void BlackJackGame::setDealtCard(const Card& card) {
+    dealtCard_ = card;
+}
+
 Card BlackJackGame::draw(Player & player) {
     if (!deck_.empty()) {
         Card card = deck_.back();
         deck_.pop_back();
         player.drawCard(card);
+        setDealtCard(card);
         return card;
     }
     Card card(-1);
+    setDealtCard(card);
     return card;
 }
 
@@ -107,4 +117,8 @@ void BlackJackGame::play() {
             break;
         }
     }
+}
+
+BlackJackGame::GameState BlackJackGame::getState() const {
+    return gameState_;
 }

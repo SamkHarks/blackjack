@@ -15,14 +15,28 @@ enum class Action {
 class BlackJackGame {
 public:
     BlackJackGame(const Player & player, const Player & dealer) :
-        player_(player), dealer_(dealer) {
+        player_(player), dealer_(dealer), gameState_(GameState::Start), dealtCard_(Card(-1)) {
             initializeDeck();
             initializeHands();
         }
+    enum class GameState {
+        Start,
+        Ongoing,
+        PlayerWins,
+        DealerWins,
+        Tie,
+        PlayerBusts,
+        DealerBusts
+        // Other states as needed
+    };
+
+    GameState getState() const;
     void play();
     void hit(Player & player);
     void stand();
     Card draw(Player & player);
+    Card getDealtCard() const;
+    void setDealtCard(const Card & card);
     Player getPlayer() const;
     Player getDealer() const;
     void printCards();
@@ -30,6 +44,8 @@ private:
     Player player_;
     Player dealer_;
     std::vector<Card> deck_;
+    GameState gameState_;
+    Card dealtCard_;
 
     void initializeDeck () {
         for (int i = 0; i < 51; i++) {
@@ -49,6 +65,8 @@ private:
         player_.printHand();
         dealer_.printHand();
     }
+    void updateStateAfterHit();
+    void updateStateAfterStand();
 };
 
 #endif
