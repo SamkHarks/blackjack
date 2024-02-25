@@ -21,6 +21,7 @@ The application follows the MVC pattern:
 - Compile and run the executable.
 - Follow prompts to hit (`h`), stand (`s`), or quit (`q`).
 - Aim to have a hand value closer to 21 than the dealer's.
+- Game ends to tie if dealer and plaeyr gets 21
 
 ## Compilation and Execution
 Ensure you have a C++ compiler and CMake installed. Compile the project using CMake and run the generated executable.
