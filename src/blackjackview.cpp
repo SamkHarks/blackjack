@@ -7,17 +7,19 @@ void BlackJackView::displayInitialHand(const BlackJackGame& game) {
 }
 
 void BlackJackView::displayHand(const Player& player) {
-    std::ostringstream oss;
-    oss << player.getName() << "'s hand: ";
-    displayMessage(oss.str());
     player.printHand();
 }
 
 void BlackJackView::displayDealtHand(const Player& player, const BlackJackGame& game) {
     const Card card = game.getDealtCard();
-    std::ostringstream oss;
-    oss << player.getName() << " dealt: " << card.getRank() << " of " << card.getSuit();
-    displayMessage(oss.str());
+    if (card.getPoints() > 0) {
+        std::ostringstream oss;
+        oss << player.getName() << " dealt: " << card.getRank() << " of " << card.getSuit();
+        displayMessage(oss.str());
+    } else {
+        displayMessage("Could not get dealt card...");
+    }
+   
 }
 
 void BlackJackView::displayHands(const BlackJackGame& game) {
@@ -34,19 +36,30 @@ void BlackJackView::displayAction(const Action &action, const BlackJackGame& gam
         case Action::Hit: {
             displayDealtHand(game.getPlayer(), game);
             displayHands(game);
+            break;
         }
         case Action::Stand: {
             displayMessage("Player stands!");
             displayHands(game);
+            break;
         }
         case Action::Quit:
             displayMessage("Thank you for playing! Exiting...");
-       
+            break;
+        case Action::BadInput:
+            displayMessage("Invalid action");
+            break;
+        case Action::Error:
+            displayMessage("Could not parse input. Try again");
+            break;
+        default:
+            displayMessage("Unknown Error");
+            break;
     }
 }
 
-void BlackJackView::displayGameState(const BlackJackGame& game) {
-    switch (game.getState()) {
+void BlackJackView::displayGameState(const BlackJackGame::GameState& gameState) {
+    switch (gameState) {
         case BlackJackGame::GameState::PlayerWins: 
             displayMessage("Player wins!");
             break;
@@ -60,7 +73,6 @@ void BlackJackView::displayGameState(const BlackJackGame& game) {
         case BlackJackGame::GameState::DealerBusts:
             displayMessage("Dealer busts!");
             displayMessage("Player wins!");
-
             break;
         case BlackJackGame::GameState::Tie:
             displayMessage("Tie");

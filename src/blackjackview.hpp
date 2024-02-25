@@ -10,7 +10,7 @@ public:
     void displayHands(const BlackJackGame& game);
     void displayDealtHand(const Player& player, const BlackJackGame& game);
     void displayAction(const Action& action, const BlackJackGame& game);
-    void displayGameState(const BlackJackGame& game);
+    void displayGameState(const BlackJackGame::GameState& gameState);
     void displayActionPrompt();
     void displayMessage(const std::string& message);
 };
