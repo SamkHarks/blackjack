@@ -14,6 +14,5 @@ int main(void) {
     BlackJackView view;
     BlackJackController controller(game, view);
     controller.playGame();
-    game.play();
     return 0;
 }
