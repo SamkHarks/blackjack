@@ -26,7 +26,7 @@ int Player::getHandValue() const {
 }
 
 void Player::printHand() const {
-    std::string handString =  name_ + " hand: ";
+    std::string handString =  name_ + "'s hand: ";
     bool firstCard = true;
 
     for (const Card& card : hand_) {
@@ -46,4 +46,8 @@ void Player::printHand() const {
 
 std::string Player::getName() const {
     return name_;
+}
+
+void Player::clearHand() {
+    hand_.clear();
 }

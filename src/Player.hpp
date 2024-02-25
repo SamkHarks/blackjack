@@ -11,6 +11,8 @@ class Player {
         void drawCard(const Card& card);
         int getHandValue() const;
         void printHand() const;
+        void clearHand();
+
         std::string getName () const;
     private:
         std::vector<Card> hand_;
