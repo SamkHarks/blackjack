@@ -41,9 +41,12 @@ void BlackJackGame::hitDealer() {
 }
 
 void BlackJackGame::updatePlayerState() {
-    int handValue = player_.getHandValue();
-    if (handValue > 21) {
+    int playerHandValue = player_.getHandValue();
+    int dealerHandValue = dealer_.getHandValue();
+    if (playerHandValue > 21) {
         gameState_ = GameState::PlayerBusts;
+    } else if (playerHandValue == 21 && dealerHandValue == playerHandValue) {
+        gameState_ = GameState::Tie;
     } else {
         gameState_ = GameState::Ongoing;
     }
@@ -56,6 +59,8 @@ void BlackJackGame::updateDealerState() {
         gameState_ = GameState::DealerBusts;
     } else if (dealerHandValue > playerHandValue) {
         gameState_ = GameState::DealerWins;
+    } else if (dealerHandValue == 21 && dealerHandValue == playerHandValue) {
+        gameState_ = GameState::Tie;
     } else {
         gameState_ = GameState::Ongoing;
     }
