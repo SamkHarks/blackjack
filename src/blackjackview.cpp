@@ -3,8 +3,7 @@
 
 void BlackJackView::displayInitialHand(const BlackJackGame& game) {
     displayMessage("Initial draw:");
-    displayHand(game.getPlayer());
-    displayHand(game.getDealer());
+    displayHands(game);
 }
 
 void BlackJackView::displayHand(const Player& player) {
